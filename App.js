@@ -4,12 +4,14 @@ import { useState } from 'react';
 export default function App() {
   //Declaramos el hook de estado de componente "newGoal"
   const [newGoal, setNewGoal] = useState("");
+  const [listGoals, setListGoals] = useState([]);
 
   function textChangeHandler(enteredText) {
     setNewGoal(enteredText)
-    console.log(newGoal)
   }
-
+  function addGoalHandler() {
+    setListGoals(myCurremtGoals=>[...myCurremtGoals ,newGoal])
+  }
   return (
     <View style={style.container}>
       <View style={style.InputContainer}>
@@ -18,10 +20,15 @@ export default function App() {
           style={style.TextInput}
           placeholder='Input your Goal' />
         <Button
-          title="Add Goal" />
+          title="Add Goal" 
+          onPress={addGoalHandler}/>
       </View>
       <View style={style.goalsContainer}>
-        <Text>Your list of goals</Text>
+        {listGoals.map(goal =>{
+            return (
+              <Text>{goal}</Text>
+            )
+        })}
       </View>
     </View>
   );
