@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, TextInput, View, Button,ScrollView} from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button,FlatList} from 'react-native';
 import { useState } from 'react';
 export default function App() {
   //Declaramos el hook de estado de componente "newGoal"
@@ -24,15 +24,15 @@ export default function App() {
           onPress={addGoalHandler} />
       </View>
       <View style={style.goalsContainer}>
-        <ScrollView>
-          {listGoals.map((goal,i) => {
-            return (
-              <View key={i} style={style.goalCard}>
-                <Text style={style.goalText}>{goal}</Text>
-              </View>
-            )
-          })}
-        </ScrollView>
+        <FlatList
+        data={listGoals}
+        renderItem={
+          ({item}) => (
+            <View style={style.goalCard} key={item}>
+              <Text style={style.goalText}>{item}</Text>
+            </View>
+          )}
+        />
       </View>
     </View>
   );
