@@ -10,7 +10,7 @@ export default function App() {
     setNewGoal(enteredText)
   }
   function addGoalHandler() {
-    setListGoals(myCurremtGoals=>[...myCurremtGoals ,newGoal])
+    setListGoals(myCurremtGoals => [...myCurremtGoals, newGoal])
   }
   return (
     <View style={style.container}>
@@ -20,14 +20,16 @@ export default function App() {
           style={style.TextInput}
           placeholder='Input your Goal' />
         <Button
-          title="Add Goal" 
-          onPress={addGoalHandler}/>
+          title="Add Goal"
+          onPress={addGoalHandler} />
       </View>
       <View style={style.goalsContainer}>
-        {listGoals.map(goal =>{
-            return (
-              <Text>{goal}</Text>
-            )
+        {listGoals.map((goal,i) => {
+          return (
+            <View key={i} style={style.goalCard}>
+              <Text style={style.goalText}>{goal}</Text>
+            </View>
+          )
         })}
       </View>
     </View>
@@ -58,6 +60,18 @@ const style = new StyleSheet.create({
   },
   goalsContainer: {
     flex: 4,
+  },
+  goalCard:{
+    padding:20,
+    backgroundColor: "#f0554a",
+    margin:10,
+    borderRadius: 18,
+  },
+  goalText:{
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 20,
+    textAlign: 'center',
   }
 
 })
