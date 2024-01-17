@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button,ScrollView} from 'react-native';
 import { useState } from 'react';
 export default function App() {
   //Declaramos el hook de estado de componente "newGoal"
@@ -24,13 +24,15 @@ export default function App() {
           onPress={addGoalHandler} />
       </View>
       <View style={style.goalsContainer}>
-        {listGoals.map((goal,i) => {
-          return (
-            <View key={i} style={style.goalCard}>
-              <Text style={style.goalText}>{goal}</Text>
-            </View>
-          )
-        })}
+        <ScrollView>
+          {listGoals.map((goal,i) => {
+            return (
+              <View key={i} style={style.goalCard}>
+                <Text style={style.goalText}>{goal}</Text>
+              </View>
+            )
+          })}
+        </ScrollView>
       </View>
     </View>
   );
@@ -64,7 +66,8 @@ const style = new StyleSheet.create({
   goalCard:{
     padding:20,
     backgroundColor: "#f0554a",
-    margin:10,
+    marginTop: 10,
+    marginBottom: 10, 
     borderRadius: 18,
   },
   goalText:{
