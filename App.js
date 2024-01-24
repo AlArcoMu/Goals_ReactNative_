@@ -1,17 +1,34 @@
+/**
+ * @fileoverview Main component of the application.
+ * @author <AlArcoMU>
+ */
 
 import { StyleSheet, Text, TextInput, View, Button,FlatList} from 'react-native';
 import { useState } from 'react';
+
+/**
+ * Main component of the application.
+ */
 export default function App() {
   //Declaramos el hook de estado de componente "newGoal"
   const [newGoal, setNewGoal] = useState("");
   const [listGoals, setListGoals] = useState([]);
 
+  /**
+   * Event handler for when the user enters text into the text input field.
+   * @param {string} enteredText - The text that was entered into the text input field.
+   */
   function textChangeHandler(enteredText) {
-    setNewGoal(enteredText)
+    setNewGoal(enteredText);
   }
+
+  /**
+   * Event handler for when the user presses the "Add Goal" button.
+   */
   function addGoalHandler() {
-    setListGoals(myCurremtGoals => [...myCurremtGoals, newGoal])
+    setListGoals(myCurremtGoals => [...myCurremtGoals, newGoal]);
   }
+
   return (
     <View style={style.container}>
       <View style={style.InputContainer}>
@@ -25,8 +42,8 @@ export default function App() {
       </View>
       <View style={style.goalsContainer}>
         <FlatList
-        data={listGoals}
-        renderItem={
+        data={listGoals} 
+        renderItem ={
           ({item}) => (
             <View style={style.goalCard} key={item}>
               <Text style={style.goalText}>{item}</Text>
@@ -37,7 +54,11 @@ export default function App() {
     </View>
   );
 }
-const style = new StyleSheet.create({
+
+/**
+ * StyleSheet for the main component.
+ */
+const style = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 70,
@@ -76,5 +97,4 @@ const style = new StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
   }
-
-})
+});
