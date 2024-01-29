@@ -15,6 +15,9 @@ export default function App() {
       text: newGoalText,
     }]);
   }
+  function onDeleteGoalHandler(goalId) {
+    setMyGoals(myCurrentGoals => myCurrentGoals.filter(goal => goal.id!== goalId));
+  }
 
   return (
     <View style={styles.container}>
@@ -24,7 +27,7 @@ export default function App() {
         <FlatList
           data={myGoals}
           renderItem={(dataItem) => (
-            <GoalItem key={dataItem.item.id} goal={dataItem.item} />
+            <GoalItem key={dataItem.item.id} goal={dataItem.item} onDeleteGoal={onDeleteGoalHandler}/>
           )
           }
         />
