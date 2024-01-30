@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, TextInput, StyleSheet, Button, Modal } from 'react-native';
+import { View, TextInput, StyleSheet, Button, Modal,Image } from 'react-native';
 
 export default function GoalInput({ onNewGoal, visible, onCancel }) {
   const [newGoal, setNewGoal] = useState("");
@@ -20,6 +20,8 @@ export default function GoalInput({ onNewGoal, visible, onCancel }) {
       animationType='slide'
       visible={visible}>
       <View style={styles.inputContainer}>
+        <Image mage source={require('../img/julius.png')} style={styles.logo}>
+        </Image>
         <TextInput
           onChangeText={textChangeHandler}
           style={styles.textInput}
@@ -29,12 +31,14 @@ export default function GoalInput({ onNewGoal, visible, onCancel }) {
         <View style={styles.ViewButton}>
           <View style={styles.Button}>
             <Button
+              color="#d61b11"
               title='Cancel'
               onPress={() => onCancel()}
             />
           </View>
           <View style={styles.Button}>
             <Button
+              color="#3d517a"
               title='Add Goal'
               onPress={onPressHandler}
             />
@@ -47,10 +51,10 @@ export default function GoalInput({ onNewGoal, visible, onCancel }) {
 
 const styles = new StyleSheet.create({
   inputContainer: {
+    backgroundColor:"#8AC6BF",
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    marginBottom: 20,
     borderBottomWidth: 1,
     borderBottomColor: "#CCCCCC",
     alignItems: 'center'
@@ -64,10 +68,17 @@ const styles = new StyleSheet.create({
     margin:20,
   },
   textInput: {
-    borderColor: "#CCCCCC",
+    backgroundColor:"#f5f0f0",
+    borderColor: "##01395C",
     borderWidth: 1,
     width: "70%",
     padding: 10
+  },
+  logo:{
+    backgroundColor:"#8AC6BF",
+    width: 500,
+    height: 300,
+    marginBottom:20
   }
 })
 

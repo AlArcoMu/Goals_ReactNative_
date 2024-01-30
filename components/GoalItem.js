@@ -10,6 +10,7 @@ export default function GoalItem({ goal, onDeleteGoal }) {
       }>
       <View style={styles.goalItem}>
         <Text style={styles.goalText}>{goal.text}</Text>
+        <Text style={styles.goalText}>{goal.date}</Text>
       </View>
     </Pressable>
   )
@@ -17,12 +18,15 @@ export default function GoalItem({ goal, onDeleteGoal }) {
 const styles = new StyleSheet.create({
   goalItem: {
     padding: 20,
-    backgroundColor: "#092FE0",
+    backgroundColor: "#7C96A8",
     marginBottom: 10,
     borderRadius: 12,
   },
   goalText: {
-    color: "white"
+    color: "white",
+    fontWeight: "bold",
+    fontSize:20,
+    textAlign:'center',
   },
   pressedItem: {
     opacity: 0.5

@@ -2,6 +2,7 @@ import { View, TextInput, Button, Text, StyleSheet, FlatList } from 'react-nativ
 import { useState } from 'react';
 import GoalInput from './components/GoalInput';
 import GoalItem from './components/GoalItem';
+import { StatusBar } from 'expo-status-bar';
 
 
 export default function App() {
@@ -10,10 +11,14 @@ export default function App() {
   const [modalVisible, setmodalVisible] = useState(false);
 
   function addGoalHandler(newGoalText) {
+    const currentDate = new Date();
+    const options = { timeZone: 'Europe/Madrid' }; // Configura la zona horaria para España
+    const formattedDate = currentDate.toLocaleTimeString('es-ES', options) + ' ' + currentDate.toLocaleDateString('es-ES', options);
     setMyGoals(myCurrentGoals => [...myCurrentGoals,
     {
       id: Date.now(),
       text: newGoalText,
+      date: formattedDate
     }]);
   }
   function closeAddGoalHandler() {
@@ -24,12 +29,15 @@ export default function App() {
   }
 
   return (
+    <>
+    <StatusBar style="light"/>
     <View style={styles.container}>
-      <Button 
+      <Button
+        color="#3d517a"
         title='Add new Goal'
         onPress={() => setmodalVisible(true)}
       />
-      <GoalInput 
+      <GoalInput
         onNewGoal={addGoalHandler}
         onCancel={() => setmodalVisible(false)}
         visible={modalVisible}
@@ -44,6 +52,7 @@ export default function App() {
         />
       </View>
     </View>
+    </>
   );
 }
 
@@ -51,12 +60,13 @@ const styles = new StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 70,
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
+    backgroundColor: "#8AC6BF",
   },
   goalsContainer: {
     flex: 5,
     paddingTop: 10,
-  }
+  },
 })
 
 
