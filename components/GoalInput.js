@@ -11,6 +11,7 @@ export default function GoalInput({ onNewGoal, visible, onCancel }) {
   function onPressHandler() {
     if (newGoal) {
       onNewGoal(newGoal)
+      onCancel()
     }
     setNewGoal("");
   }
